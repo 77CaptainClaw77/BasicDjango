@@ -36,7 +36,7 @@ def delete_query(request,id):
 	return redirect('/home')
 
 def edit_query(request,id):
-	print(request.session['id'])
+	#print(request.session['id'])
 	query=Teacher.objects.get(teacher_id=id)
 	if request.method=="POST":
 		modelform=TeacherEditModelForm(request.POST,instance=query)
@@ -49,8 +49,8 @@ def edit_query(request,id):
 	
 def create_query(request):
 	if request.method=="POST":
-		del request.session['id']
-		request.session['id']="SECRET"
+		# del request.session['id']
+		# request.session['id']="SECRET"
 		data_recieved=TeacherCreateForm(request.POST)
 		if data_recieved.is_valid():
 			new_teacher=Teacher.objects.create(teacher_name=data_recieved.cleaned_data.get('t_n'),teacher_salary=data_recieved.cleaned_data.get('sal'),subject=data_recieved.cleaned_data.get('sub'))	    
